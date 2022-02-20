@@ -1,0 +1,36 @@
+﻿@model List<HW3.Models.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div class="container">
+    <a class="btn btn-success" href="@Url.Action("AddProduct")">Add</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+        <tr>
+            <td>@p.Name</td>
+            <td>@p.Description</td>
+            <td>R @p.Price</td>
+            <td>
+                <a class="btn btn-warning" href="@Url.Action("EditProduct", new { id = p.ID })">Edit</a>
+                <a class="btn btn-danger" href="@Url.Action("DeleteProduct", new { id = p.ID })">Remove</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+    </table>

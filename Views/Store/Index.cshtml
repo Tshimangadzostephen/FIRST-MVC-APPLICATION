@@ -1,0 +1,37 @@
+﻿@model List<HW3.Models.Product>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .panel-container {
+        width: 200px;
+        display: inline-block;
+    }
+</style>
+
+<h2>Products</h2>
+
+<div>
+    <a href="@Url.Action("ViewCart")" class="btn btn-primary">View Cart</a>
+</div>
+
+<br />
+
+@foreach (var item in Model)
+{
+    <div class="panel-container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">@item.Name</h3>
+            </div>
+            <div class="panel-body">
+                <p>@item.Description</p>
+                <p>R @item.Price</p>
+                <br />
+                <a href="@Url.Action("AddToCart", new { id = item.ID })" class="btn btn-success">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+}

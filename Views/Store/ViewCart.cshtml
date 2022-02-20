@@ -1,0 +1,38 @@
+﻿@model List<HW3.Models.Product>
+@{
+    ViewBag.Title = "ViewCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    double total = 0;
+}
+
+<h2>Cart</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Description</th>
+            <th>(Quantity) Price</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.Name</td>
+                <td>@p.Description</td>
+                <td>(@p.Quantity) R @(p.GetTotal())</td>
+                <td>
+                    <a class="btn btn-success" href="@Url.Action("IncProduct", new { id = p.ID })">+</a> 
+                    @p.Quantity 
+                    <a class="btn btn-danger" href="@Url.Action("DecProduct", new { id = p.ID })">-</a>
+                </td>
+            </tr>
+            total += p.GetTotal();
+        }
+        <tr>
+            <td colspan="4"><h3>Total: R @total</h3></td>
+        </tr>
+    </tbody>
+</table>
